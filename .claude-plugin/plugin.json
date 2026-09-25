@@ -1,0 +1,9 @@
+{
+  "name": "makeaivideo",
+  "description": "Make short-form AI videos (TikTok, Reels, Shorts) from a brief: script, voiceover, AI or stock scenes, captions. Estimate the credit cost, create, poll until ready, download the MP4.",
+  "version": "0.2.0",
+  "author": { "name": "MakeAIVideo", "url": "https://makeaivideo.ai" },
+  "homepage": "https://makeaivideo.ai",
+  "repository": "https://github.com/makeaivideo/cli",
+  "license": "MIT"
+}

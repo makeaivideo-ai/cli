@@ -1,0 +1,63 @@
+{
+  "name": "@makeaivideo/cli",
+  "version": "0.2.0",
+  "description": "Make short-form AI videos from your terminal: brief in, finished MP4 out. Log in once, create, wait, download. Prints JSON with --json so it doubles as a tool for Claude, Cursor and other AI agents.",
+  "type": "module",
+  "bin": {
+    "makeaivideo": "dist/index.js",
+    "makeaivideo-cli": "dist/index.js"
+  },
+  "files": [
+    ".claude-plugin",
+    ".mcp.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "SKILL.md",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makeaivideo-ai/cli.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai agent",
+    "ai video",
+    "ai video generator",
+    "claude",
+    "cli",
+    "faceless video",
+    "instagram reels",
+    "makeaivideo",
+    "mcp",
+    "reels",
+    "short-form",
+    "shorts",
+    "text to video",
+    "tiktok",
+    "video generation",
+    "youtube shorts"
+  ],
+  "license": "MIT",
+  "homepage": "https://makeaivideo.ai/docs/cli",
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^20.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/makeaivideo-ai/cli/issues",
+    "email": "support@makeaivideo.ai"
+  },
+  "author": "MakeAIVideo <support@makeaivideo.ai> (https://makeaivideo.ai)"
+}
