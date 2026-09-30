@@ -1,7 +1,41 @@
 {
   "name": "@makeaivideo/cli",
-  "version": "0.2.0",
-  "description": "Make short-form AI videos from your terminal: brief in, finished MP4 out. Log in once, create, wait, download. Prints JSON with --json so it doubles as a tool for Claude, Cursor and other AI agents.",
+  "version": "0.3.0",
+  "description": "MakeAIVideo CLI: make AI videos from your terminal with the MakeAIVideo AI video generator. Brief in, finished MP4 out (voiceover, scenes, captions, music), then post it to TikTok, Instagram, YouTube and more. JSON output for AI agents and CI.",
+  "keywords": [
+    "makeaivideo",
+    "cli",
+    "command-line",
+    "ai-video",
+    "ai-video-generator",
+    "text-to-video",
+    "video-generation",
+    "tiktok",
+    "instagram-reels",
+    "youtube-shorts",
+    "short-form-video",
+    "faceless-video",
+    "social-media-automation",
+    "auto-post",
+    "ai-agents",
+    "claude",
+    "claude-code",
+    "mcp",
+    "automation",
+    "terminal",
+    "generative-ai"
+  ],
+  "homepage": "https://makeaivideo.ai/docs/cli",
+  "bugs": {
+    "url": "https://github.com/makeaivideo-ai/cli/issues",
+    "email": "support@makeaivideo.ai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makeaivideo-ai/cli.git"
+  },
+  "license": "MIT",
+  "author": "MakeAIVideo <support@makeaivideo.ai> (https://makeaivideo.ai)",
   "type": "module",
   "bin": {
     "makeaivideo": "dist/index.js",
@@ -16,13 +50,6 @@
     "SKILL.md",
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/makeaivideo-ai/cli.git"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "engines": {
     "node": ">=18.0.0"
   },
@@ -31,33 +58,11 @@
     "dev": "tsc -p tsconfig.json --watch",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [
-    "ai agent",
-    "ai video",
-    "ai video generator",
-    "claude",
-    "cli",
-    "faceless video",
-    "instagram reels",
-    "makeaivideo",
-    "mcp",
-    "reels",
-    "short-form",
-    "shorts",
-    "text to video",
-    "tiktok",
-    "video generation",
-    "youtube shorts"
-  ],
-  "license": "MIT",
-  "homepage": "https://makeaivideo.ai/docs/cli",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "typescript": "^5.6.0",
     "@types/node": "^20.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/makeaivideo-ai/cli/issues",
-    "email": "support@makeaivideo.ai"
-  },
-  "author": "MakeAIVideo <support@makeaivideo.ai> (https://makeaivideo.ai)"
+  }
 }

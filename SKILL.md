@@ -1,6 +1,6 @@
 ---
 name: makeaivideo
-description: Make short-form AI videos (TikTok, Reels, Shorts) from a brief. Use when the user asks to create, generate, render, check on, or download a video, estimate what a video will cost, or list their videos, voices, characters or templates.
+description: Make short-form AI videos (TikTok, Reels, Shorts) from a brief. Use when the user asks to create, generate, render, check on, or download a video, estimate what a video will cost, post or schedule a video to TikTok, Instagram, YouTube or other connected social accounts, or list their videos, voices, characters or templates.
 ---
 
 # MakeAIVideo
@@ -37,6 +37,7 @@ Renders take 2 to 6 minutes. Poll with `makeaivideo status <video_id>` no faster
 - **Fix one part, not the whole video:** `scene-regen <id> <n> --narration "..."`, `voice <id> --voice-id <v>`, then `export <id>` and `render-progress <id>`.
 - **Don't poll if you can be told:** `webhook-add https://your.host/hook --events video.ready,video.failed` (save the secret; verify `X-MakeAIVideo-Signature` = sha256 HMAC of the raw body).
 - **Characters:** `portraits --prompt "..." --style <s>` then `voice-previews`, then `character-create` with the chosen `r2_key` and temp key. Pass `--character-id` on create.
+- **Post it:** `accounts` lists connected social accounts (`acc_...` ids). `publish <video_id> --accounts acc_1,acc_2 --caption "..."` posts now; add `--schedule <ISO-8601>` to schedule. Check with `post <post_id>` or `posts --video <video_id>`. To add an account, `connect <platform>` returns a link that the USER must open; you cannot finish it. Bluesky, Telegram and Discord connect in the web app only. X is not supported. Never guess account ids.
 - **Captions and sharing:** `captions <id> --format vtt --out subs.vtt`; `share <id>` for a public expiring link.
 
 ## Rules

@@ -1,11 +1,16 @@
-# @makeaivideo/cli
+# MakeAIVideo CLI (`@makeaivideo/cli`)
 
-Make short-form AI videos from your terminal. Brief in, finished MP4 out.
+[![npm version](https://img.shields.io/npm/v/@makeaivideo/cli.svg)](https://www.npmjs.com/package/@makeaivideo/cli) [![license: MIT](https://img.shields.io/npm/l/@makeaivideo/cli.svg)](LICENSE) [![node](https://img.shields.io/node/v/@makeaivideo/cli.svg)](https://nodejs.org)
+
+**The MakeAIVideo CLI makes AI videos from your terminal: give it a brief or a script and it returns a finished MP4 with AI voiceover, AI or stock scenes, captions and music, then posts or schedules it to your connected TikTok, Instagram, YouTube and other social accounts.**
+
+[MakeAIVideo](https://makeaivideo.ai) is an AI video generator for short-form video. This CLI is a thin client for its [REST API](https://makeaivideo.ai/docs/api) ([CLI guide](https://makeaivideo.ai/docs/cli)).
 
 ```bash
 npx @makeaivideo/cli login
 makeaivideo tools
 makeaivideo create explainer --topic "Why planes leave white trails" --wait --out trails.mp4
+makeaivideo publish <video_id> --accounts acc_123 --caption "Why planes leave white trails"
 ```
 
 Zero runtime dependencies (Node 18+). Every command prints JSON with `--json` (automatic when
@@ -40,10 +45,25 @@ Every command prints JSON. Ids are the public ids the API returns (`vid_…`, `w
 | Ideas | `ideas --niche "…" [--audience --tone --count]`, `enhance --topic "…"` |
 | Characters | `characters`, `character <id>`, `portraits --prompt "…" --style s`, `voice-previews`, `character-create --name --style --portrait --voice-preview --voice-id`, `character-delete <id>` |
 | Assets | `upload <image…>`, `upload-url <image_url>`, `voices`, `voice-preview <id> [--text]`, `music`, `music-generate --prompt "…"`, `brand-kit [--show true]`, `brand-kit-watermark <png>`, `templates` |
+| Post to social | `accounts`, `connect <platform>`, `publish <id> --accounts acc_1,acc_2 --caption "…" [--schedule <ISO-8601> --timezone --youtube-title --idempotency-key]`, `posts [--video <id>]`, `post <post_id>` |
 | Webhooks | `webhooks`, `webhook-add <url> --events video.ready,video.failed`, `webhook-test <id>`, `webhook-deliveries <id>`, `webhook-enable <id>`, `webhook-rm <id>` |
 
 Set `--idempotency-key <key>` on `create` so a retried command never makes (and charges for) a
-second video.
+second video. The same flag on `publish` stops a retry from posting twice.
+
+## Post to social accounts
+
+```bash
+makeaivideo accounts                          # connected accounts and their acc_... ids
+makeaivideo connect tiktok                    # prints a link: open it in a browser to connect
+makeaivideo publish vid_abc --accounts acc_1,acc_2 --caption "New video" --schedule 2026-10-01T09:00:00Z
+makeaivideo post <post_id>                    # status and per-platform results
+```
+
+TikTok, Instagram (as a Reel), YouTube (9:16 as a Short), Facebook Pages, LinkedIn, Threads and
+Pinterest connect by link. Bluesky, Telegram and Discord connect in the
+[web app](https://app.makeaivideo.ai). X is not supported. More at
+[makeaivideo.ai/auto-post](https://makeaivideo.ai/auto-post).
 
 ## For AI agents
 
@@ -59,17 +79,42 @@ REST API spec: `https://app.makeaivideo.ai/api/v1/openapi.json`.
 - `MAKEAIVIDEO_API_KEY` overrides the saved login.
 - `MAKEAIVIDEO_API_URL` points at another host (default `https://app.makeaivideo.ai`).
 
-MIT
+## FAQ
+
+**What is the MakeAIVideo CLI?** An MIT-licensed command line client for the MakeAIVideo AI video generator. It creates finished short-form videos from a brief or script, downloads the MP4, and posts it to connected social accounts.
+
+**How do I install it?** `npm i -g @makeaivideo/cli`, or run it without installing via `npx @makeaivideo/cli`. Node 18 or newer.
+
+**Can Claude Code or another AI agent use it?** Yes. Every command prints JSON, and the package ships a Claude Code plugin (`SKILL.md`) plus an `.mcp.json` for the hosted MCP server `https://mcp.makeaivideo.ai`.
+
+**Which platforms can it post to?** TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, Threads, Pinterest, Bluesky, Telegram and Discord. X is not supported.
+
+**How is it priced?** MakeAIVideo is a paid product with monthly plans and a 7-day trial (card required). The CLI uses the same credits as the app; `estimate` quotes a video before you create it. See [pricing](https://makeaivideo.ai/pricing).
+
+**Where do I get help?** Open an [issue](https://github.com/makeaivideo-ai/cli/issues) or email support@makeaivideo.ai.
+
+## Links
+
+- Website: [makeaivideo.ai](https://makeaivideo.ai)
+- CLI guide: [makeaivideo.ai/docs/cli](https://makeaivideo.ai/docs/cli) · [makeaivideo.ai/cli](https://makeaivideo.ai/cli)
+- Developer hub: [makeaivideo.ai/developers](https://makeaivideo.ai/developers)
+- API reference: [makeaivideo.ai/docs/api](https://makeaivideo.ai/docs/api)
+- OpenAPI spec: [app.makeaivideo.ai/api/v1/openapi.json](https://app.makeaivideo.ai/api/v1/openapi.json)
+- MCP server: `https://mcp.makeaivideo.ai` ([setup guide](https://makeaivideo.ai/docs/mcp))
+- API keys: [app.makeaivideo.ai/developers](https://app.makeaivideo.ai/developers)
+- npm: [@makeaivideo/cli](https://www.npmjs.com/package/@makeaivideo/cli) · [@makeaivideo/sdk](https://www.npmjs.com/package/@makeaivideo/sdk) · [@makeaivideo/mcp](https://www.npmjs.com/package/@makeaivideo/mcp)
+- GitHub: [makeaivideo-ai/cli](https://github.com/makeaivideo-ai/cli) · [makeaivideo-ai/sdk](https://github.com/makeaivideo-ai/sdk) · [makeaivideo-ai/mcp](https://github.com/makeaivideo-ai/mcp)
+- Support: support@makeaivideo.ai
 
 ## About MakeAIVideo
 
-[MakeAIVideo](https://makeaivideo.ai) is an AI video generator that turns a brief, a prompt or your own script into a finished, captioned short-form video: script, AI voiceover, AI-generated or stock scenes, captions and music, exported as an MP4 ready for TikTok, Instagram Reels and YouTube Shorts.
+[MakeAIVideo](https://makeaivideo.ai) is an AI video generator that turns a brief, a prompt, your own script, an image or a talking avatar into a finished, captioned short-form video: script, AI voiceover, AI-generated or stock scenes, captions and music, exported as an MP4 ready for TikTok, Instagram Reels and YouTube Shorts. It also does character swap, and posts or schedules videos to connected TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, Threads, Pinterest, Bluesky, Telegram and Discord accounts. Operated by MintClips Ltd (UK).
 
 - **Make videos in the app:** [prompt to video](https://makeaivideo.ai/prompt-to-video), [script to video](https://makeaivideo.ai/script-to-video), [image to video](https://makeaivideo.ai/image-to-video), [talking avatar](https://makeaivideo.ai/talking-avatar), [AI ad maker](https://makeaivideo.ai/ai-ad-maker), [blog to video](https://makeaivideo.ai/blog-to-video)
 - **By format:** [TikTok video generator](https://makeaivideo.ai/tiktok-video-generator), [Instagram Reels generator](https://makeaivideo.ai/instagram-reels-generator), [AI Shorts generator](https://makeaivideo.ai/ai-shorts-generator), [faceless YouTube channel](https://makeaivideo.ai/faceless-youtube-channel), [AI UGC video](https://makeaivideo.ai/ai-ugc-video), [AI explainer video](https://makeaivideo.ai/ai-explainer-video), [AI spokesperson video](https://makeaivideo.ai/ai-spokesperson-video)
-- **For developers:** [developer hub](https://makeaivideo.ai/developers), [API reference](https://makeaivideo.ai/docs/api), [quickstart](https://makeaivideo.ai/docs/quickstart), [authentication](https://makeaivideo.ai/docs/authentication), [webhooks](https://makeaivideo.ai/docs/webhooks), [MCP server](https://makeaivideo.ai/docs/mcp), [AI agents](https://makeaivideo.ai/docs/agents), [CLI](https://makeaivideo.ai/docs/cli)
+- **For developers:** [developer hub](https://makeaivideo.ai/developers), [API reference](https://makeaivideo.ai/docs/api), [quickstart](https://makeaivideo.ai/docs/quickstart), [authentication](https://makeaivideo.ai/docs/authentication), [webhooks](https://makeaivideo.ai/docs/webhooks), [MCP server](https://makeaivideo.ai/docs/mcp), [AI agents](https://makeaivideo.ai/docs/agents), [SDK guide](https://makeaivideo.ai/docs/sdk), [CLI](https://makeaivideo.ai/docs/cli)
 - **Compare:** [MakeAIVideo vs HeyGen](https://makeaivideo.ai/compare/heygen), [MakeAIVideo vs Synthesia](https://makeaivideo.ai/compare/synthesia)
-- [Pricing](https://makeaivideo.ai/pricing) · [Free creator tools](https://makeaivideo.ai/tools) · [Blog](https://makeaivideo.ai/blog) · [Help](https://makeaivideo.ai/help) · [Contact](https://makeaivideo.ai/contact)
+- [Auto-post to social](https://makeaivideo.ai/auto-post) · [Character swap](https://makeaivideo.ai/character-swap) · [Pricing](https://makeaivideo.ai/pricing) · [Free creator tools](https://makeaivideo.ai/tools) · [Blog](https://makeaivideo.ai/blog) · [Help](https://makeaivideo.ai/help) · [Contact](https://makeaivideo.ai/contact)
 
 ## Related packages
 

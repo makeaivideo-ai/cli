@@ -23,7 +23,7 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 
 const BASE = (process.env.MAKEAIVIDEO_API_URL || 'https://app.makeaivideo.ai').replace(/\/$/, '');
-const VERSION = '0.2.0'; // keep in sync with package.json (sent as User-Agent)
+const VERSION = '0.3.0'; // keep in sync with package.json (sent as User-Agent)
 const CONFIG_DIR = path.join(os.homedir(), '.makeaivideo');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 const WANT_JSON = process.argv.includes('--json') || !process.stdout.isTTY;
@@ -266,7 +266,7 @@ async function create(positional: string[], flags: Record<string, string | boole
 }
 
 // ─── help ────────────────────────────────────────────────
-const HELP = `${paint('makeaivideo', C.bold)} — make short-form AI videos from your terminal.
+const HELP = `${paint('makeaivideo', C.bold)}: make short-form AI videos from your terminal.
 
 ${paint('Getting started', C.bold)}
   makeaivideo login                 Log in (opens your browser, saves a key locally)
@@ -309,6 +309,13 @@ ${paint('Characters, voices, music, brand', C.bold)}
   music | music-generate --prompt "..." [--duration 30] [--mood calm]
   brand-kit | brand-kit --show true|false | brand-kit-watermark <file.png>
   workspace | workspace --name n --aspect 9:16 --style cinematic
+
+${paint('Post to social', C.bold)}
+  accounts                       Connected social accounts (acc_... ids) and the plan's account limit
+  connect <platform>             Link a person opens to connect tiktok|instagram|youtube|facebook|linkedin|threads|pinterest
+  publish <videoId> --accounts acc_1,acc_2 --caption "..." [--schedule 2026-10-01T09:00:00Z]
+                                 [--timezone Europe/London] [--youtube-title t] [--idempotency-key k]
+  posts [--video <videoId>] [--limit n] | post <postId>    Publish history and per-platform results
 
 ${paint('Webhooks', C.bold)}
   webhooks | webhook-add <url> --events video.ready,video.failed [--name n]
@@ -512,6 +519,33 @@ async function main() {
       const patch: Record<string, unknown> = { name: flags.name, description: flags.description, default_aspect_ratio: flags.aspect, default_style: flags.style };
       if (Object.values(patch).some((v) => v !== undefined)) return outJson(await api('PATCH', '/workspace', patch));
       return outJson(await api('GET', '/workspace'));
+    }
+    case 'accounts': return outJson(await api('GET', '/publishing/accounts'));
+    case 'connect': {
+      if (!positional[0]) fail('Usage: makeaivideo connect <tiktok|instagram|youtube|facebook|linkedin|threads|pinterest>');
+      const data = await api<any>('POST', '/publishing/accounts/connect', { platform: positional[0] });
+      if (!WANT_JSON) say(paint('Open this link in a browser and approve access:', C.yellow));
+      return outJson(data);
+    }
+    case 'publish': {
+      if (!positional[0] || typeof flags.accounts !== 'string' || typeof flags.caption !== 'string') fail('Usage: makeaivideo publish <videoId> --accounts acc_1,acc_2 --caption "..." [--schedule ISO-8601] [--timezone tz] [--youtube-title t] [--idempotency-key k]');
+      const body: Record<string, unknown> = { account_ids: csv(flags.accounts), caption: flags.caption };
+      if (typeof flags.schedule === 'string') body.scheduled_for = flags.schedule;
+      if (typeof flags.timezone === 'string') body.timezone = flags.timezone;
+      if (typeof flags['youtube-title'] === 'string') body.youtube_title = flags['youtube-title'];
+      if (typeof flags['idempotency-key'] === 'string') body.idempotency_key = flags['idempotency-key'];
+      return outJson(await api('POST', `/videos/${encodeURIComponent(positional[0])}/publish`, body));
+    }
+    case 'posts': {
+      const qs = new URLSearchParams();
+      if (typeof flags.video === 'string') qs.set('video_id', flags.video);
+      if (typeof flags.limit === 'string') qs.set('limit', flags.limit);
+      if (typeof flags.cursor === 'string') qs.set('cursor', flags.cursor);
+      return outJson(await api('GET', `/publishing/posts${qs.size ? `?${qs}` : ''}`));
+    }
+    case 'post': {
+      if (!positional[0]) fail('Usage: makeaivideo post <postId>');
+      return outJson(await api('GET', `/publishing/posts/${encodeURIComponent(positional[0])}`));
     }
     case 'webhooks': return outJson(await api('GET', '/webhooks'));
     case 'webhook-add': {
