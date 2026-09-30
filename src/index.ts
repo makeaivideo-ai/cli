@@ -23,7 +23,7 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 
 const BASE = (process.env.MAKEAIVIDEO_API_URL || 'https://app.makeaivideo.ai').replace(/\/$/, '');
-const VERSION = '0.3.0'; // keep in sync with package.json (sent as User-Agent)
+const VERSION = '0.3.1'; // keep in sync with package.json (sent as User-Agent)
 const CONFIG_DIR = path.join(os.homedir(), '.makeaivideo');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 const WANT_JSON = process.argv.includes('--json') || !process.stdout.isTTY;

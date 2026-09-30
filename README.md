@@ -79,6 +79,18 @@ REST API spec: `https://app.makeaivideo.ai/api/v1/openapi.json`.
 - `MAKEAIVIDEO_API_KEY` overrides the saved login.
 - `MAKEAIVIDEO_API_URL` points at another host (default `https://app.makeaivideo.ai`).
 
+## What you can make with MakeAIVideo
+
+MakeAIVideo turns almost any starting point into a finished short-form video. Start from a single idea with [prompt to video](https://makeaivideo.ai/prompt-to-video), or bring your own words with [script to video](https://makeaivideo.ai/script-to-video) and [blog to video](https://makeaivideo.ai/blog-to-video), which narrates a blog post you paste in. To teach a topic, [AI explainer videos](https://makeaivideo.ai/ai-explainer-video) add voiceover, scenes, captions and music in one pass.
+
+For a presenter on screen, [AI talking avatar videos](https://makeaivideo.ai/talking-avatar) lip-sync a presenter you pick, or one made from your own reference photo, to a script. [AI spokesperson videos](https://makeaivideo.ai/ai-spokesperson-video) suit corporate messaging you want to re-render when details change, and [AI UGC video ads](https://makeaivideo.ai/ai-ugc-video) put an AI spokesperson on your ad script for Meta and TikTok. [Character swap](https://makeaivideo.ai/character-swap) replaces the person in a video you upload while the motion and audio stay as filmed.
+
+From a still image, [image to video](https://makeaivideo.ai/image-to-video) turns product shots, landscapes and album art into a moving clip, and [animate a photo](https://makeaivideo.ai/animate-a-photo) brings portraits, pets and old family photos to life.
+
+Every video is sized for short-form platforms: use the [TikTok video generator](https://makeaivideo.ai/tiktok-video-generator), the [Instagram Reels generator](https://makeaivideo.ai/instagram-reels-generator) or the [AI YouTube Shorts generator](https://makeaivideo.ai/ai-shorts-generator), or run a [faceless YouTube channel](https://makeaivideo.ai/faceless-youtube-channel) without filming. When a video is ready, [auto-post to social media](https://makeaivideo.ai/auto-post) posts or schedules it to TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, Threads, Pinterest, Bluesky, Telegram and Discord (X is not supported). Plans and credits are on the [MakeAIVideo pricing page](https://makeaivideo.ai/pricing), and AI assistants connect through the [MakeAIVideo MCP server setup guide](https://makeaivideo.ai/docs/mcp).
+
+From the terminal, `create` covers the brief-driven tools (explainer, listicle, story, UGC, demo, article and spokesperson) and your own scripts, and `publish` posts the result. The [API reference](https://makeaivideo.ai/docs/api) lists exactly what each endpoint accepts.
+
 ## FAQ
 
 **What is the MakeAIVideo CLI?** An MIT-licensed command line client for the MakeAIVideo AI video generator. It creates finished short-form videos from a brief or script, downloads the MP4, and posts it to connected social accounts.
@@ -110,11 +122,9 @@ REST API spec: `https://app.makeaivideo.ai/api/v1/openapi.json`.
 
 [MakeAIVideo](https://makeaivideo.ai) is an AI video generator that turns a brief, a prompt, your own script, an image or a talking avatar into a finished, captioned short-form video: script, AI voiceover, AI-generated or stock scenes, captions and music, exported as an MP4 ready for TikTok, Instagram Reels and YouTube Shorts. It also does character swap, and posts or schedules videos to connected TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, Threads, Pinterest, Bluesky, Telegram and Discord accounts. Operated by MintClips Ltd (UK).
 
-- **Make videos in the app:** [prompt to video](https://makeaivideo.ai/prompt-to-video), [script to video](https://makeaivideo.ai/script-to-video), [image to video](https://makeaivideo.ai/image-to-video), [talking avatar](https://makeaivideo.ai/talking-avatar), [AI ad maker](https://makeaivideo.ai/ai-ad-maker), [blog to video](https://makeaivideo.ai/blog-to-video)
-- **By format:** [TikTok video generator](https://makeaivideo.ai/tiktok-video-generator), [Instagram Reels generator](https://makeaivideo.ai/instagram-reels-generator), [AI Shorts generator](https://makeaivideo.ai/ai-shorts-generator), [faceless YouTube channel](https://makeaivideo.ai/faceless-youtube-channel), [AI UGC video](https://makeaivideo.ai/ai-ugc-video), [AI explainer video](https://makeaivideo.ai/ai-explainer-video), [AI spokesperson video](https://makeaivideo.ai/ai-spokesperson-video)
 - **For developers:** [developer hub](https://makeaivideo.ai/developers), [API reference](https://makeaivideo.ai/docs/api), [quickstart](https://makeaivideo.ai/docs/quickstart), [authentication](https://makeaivideo.ai/docs/authentication), [webhooks](https://makeaivideo.ai/docs/webhooks), [MCP server](https://makeaivideo.ai/docs/mcp), [AI agents](https://makeaivideo.ai/docs/agents), [SDK guide](https://makeaivideo.ai/docs/sdk), [CLI](https://makeaivideo.ai/docs/cli)
 - **Compare:** [MakeAIVideo vs HeyGen](https://makeaivideo.ai/compare/heygen), [MakeAIVideo vs Synthesia](https://makeaivideo.ai/compare/synthesia)
-- [Auto-post to social](https://makeaivideo.ai/auto-post) · [Character swap](https://makeaivideo.ai/character-swap) · [Pricing](https://makeaivideo.ai/pricing) · [Free creator tools](https://makeaivideo.ai/tools) · [Blog](https://makeaivideo.ai/blog) · [Help](https://makeaivideo.ai/help) · [Contact](https://makeaivideo.ai/contact)
+- [Free creator tools](https://makeaivideo.ai/tools) · [Blog](https://makeaivideo.ai/blog) · [Help](https://makeaivideo.ai/help) · [Contact](https://makeaivideo.ai/contact)
 
 ## Related packages
 

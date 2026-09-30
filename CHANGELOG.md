@@ -4,6 +4,11 @@ All notable changes to `@makeaivideo/cli` are documented here. The format follow
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-09-30
+
+### Changed
+- README: "What you can make with MakeAIVideo" section linking each video type; npm keywords for each video type. No code changes.
+
 ## [0.3.0] - 2026-09-30
 
 ### Added
