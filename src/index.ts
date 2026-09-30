@@ -23,7 +23,7 @@ import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 
 const BASE = (process.env.MAKEAIVIDEO_API_URL || 'https://app.makeaivideo.ai').replace(/\/$/, '');
-const VERSION = '0.3.1'; // keep in sync with package.json (sent as User-Agent)
+const VERSION = '0.3.2'; // keep in sync with package.json (sent as User-Agent)
 const CONFIG_DIR = path.join(os.homedir(), '.makeaivideo');
 const CONFIG_PATH = path.join(CONFIG_DIR, 'config.json');
 const WANT_JSON = process.argv.includes('--json') || !process.stdout.isTTY;
@@ -312,7 +312,7 @@ ${paint('Characters, voices, music, brand', C.bold)}
 
 ${paint('Post to social', C.bold)}
   accounts                       Connected social accounts (acc_... ids) and the plan's account limit
-  connect <platform>             Link a person opens to connect tiktok|instagram|youtube|facebook|linkedin|threads|pinterest
+  connect <platform>             Link a person opens to connect tiktok|instagram|youtube|facebook|linkedin|x|threads|pinterest
   publish <videoId> --accounts acc_1,acc_2 --caption "..." [--schedule 2026-10-01T09:00:00Z]
                                  [--timezone Europe/London] [--youtube-title t] [--idempotency-key k]
   posts [--video <videoId>] [--limit n] | post <postId>    Publish history and per-platform results
@@ -522,7 +522,7 @@ async function main() {
     }
     case 'accounts': return outJson(await api('GET', '/publishing/accounts'));
     case 'connect': {
-      if (!positional[0]) fail('Usage: makeaivideo connect <tiktok|instagram|youtube|facebook|linkedin|threads|pinterest>');
+      if (!positional[0]) fail('Usage: makeaivideo connect <tiktok|instagram|youtube|facebook|linkedin|x|threads|pinterest>');
       const data = await api<any>('POST', '/publishing/accounts/connect', { platform: positional[0] });
       if (!WANT_JSON) say(paint('Open this link in a browser and approve access:', C.yellow));
       return outJson(data);

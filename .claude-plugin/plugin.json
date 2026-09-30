@@ -1,7 +1,7 @@
 {
   "name": "makeaivideo",
   "description": "Make short-form AI videos (TikTok, Reels, Shorts) from a brief with the MakeAIVideo AI video generator: script, voiceover, AI or stock scenes, captions. Estimate the credit cost, create, poll until ready, download the MP4, and post it to connected social accounts.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": {
     "name": "MakeAIVideo",
     "url": "https://makeaivideo.ai"

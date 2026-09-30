@@ -4,6 +4,11 @@ All notable changes to `@makeaivideo/cli` are documented here. The format follow
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.2] - 2026-09-30
+
+### Changed
+- Posting to X is now supported (videos up to 140 seconds). `connect x` returns a connect link; README, SKILL.md and help text list X.
+
 ## [0.3.1] - 2026-09-30
 
 ### Changed

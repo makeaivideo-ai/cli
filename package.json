@@ -1,6 +1,6 @@
 {
   "name": "@makeaivideo/cli",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "MakeAIVideo CLI: make AI videos from your terminal with the MakeAIVideo AI video generator. Brief in, finished MP4 out (voiceover, scenes, captions, music), then post it to TikTok, Instagram, YouTube and more. JSON output for AI agents and CI.",
   "keywords": [
     "makeaivideo",
