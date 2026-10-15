@@ -68,9 +68,18 @@ Telegram and Discord connect in the [web app](https://app.makeaivideo.ai). More 
 ## For AI agents
 
 This package ships a Claude Code plugin (`.claude-plugin/plugin.json` + `SKILL.md`) and an
-`.mcp.json` pointing at the hosted MCP server `https://mcp.makeaivideo.ai`. In
-Claude.ai, ChatGPT or Cursor, add that URL as a custom connector and approve access in the
-browser; no key to paste.
+`.mcp.json` pointing at the hosted MCP server `https://mcp.makeaivideo.ai`. Give any shell agent
+the MakeAIVideo skill so it knows the commands:
+
+```bash
+npx skills add makeaivideo-ai/cli
+```
+
+Chat apps and editors (ChatGPT, Claude, Cursor, VS Code, Codex, Gemini CLI, Windsurf) connect
+to the hosted MCP server instead: add `https://mcp.makeaivideo.ai` and approve access in the
+browser, with no key to paste. Setup for every app: [MakeAIVideo MCP server](https://github.com/makeaivideo-ai/mcp)
+and the [AI Assistants page](https://app.makeaivideo.ai/ai-assistants). Agents that sign
+themselves in can follow [auth.md](https://makeaivideo.ai/auth.md).
 
 REST API spec: `https://app.makeaivideo.ai/api/v1/openapi.json`.
 
@@ -85,30 +94,48 @@ MakeAIVideo turns almost any starting point into a finished short-form video. St
 
 For a presenter on screen, [AI talking avatar videos](https://makeaivideo.ai/talking-avatar) lip-sync a presenter you pick, or one made from your own reference photo, to a script. [AI spokesperson videos](https://makeaivideo.ai/ai-spokesperson-video) suit corporate messaging you want to re-render when details change, and [AI UGC video ads](https://makeaivideo.ai/ai-ugc-video) put an AI spokesperson on your ad script for Meta and TikTok. [Character swap](https://makeaivideo.ai/character-swap) replaces the person in a video you upload while the motion and audio stay as filmed.
 
-From a still image, [image to video](https://makeaivideo.ai/image-to-video) turns product shots, landscapes and album art into a moving clip, and [animate a photo](https://makeaivideo.ai/animate-a-photo) brings portraits, pets and old family photos to life.
+From a still image, [image to video](https://makeaivideo.ai/image-to-video) turns product shots, portraits, landscapes and album art into a moving clip. For ads built from your product photos, use the [AI ad maker](https://makeaivideo.ai/ai-ad-maker).
 
 Every video is sized for short-form platforms: use the [TikTok video generator](https://makeaivideo.ai/tiktok-video-generator), the [Instagram Reels generator](https://makeaivideo.ai/instagram-reels-generator) or the [AI YouTube Shorts generator](https://makeaivideo.ai/ai-shorts-generator), or run a [faceless YouTube channel](https://makeaivideo.ai/faceless-youtube-channel) without filming. When a video is ready, [auto-post to social media](https://makeaivideo.ai/auto-post) posts or schedules it to TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, X, Threads, Pinterest, Bluesky, Telegram and Discord. Plans and credits are on the [MakeAIVideo pricing page](https://makeaivideo.ai/pricing), and AI assistants connect through the [MakeAIVideo MCP server setup guide](https://makeaivideo.ai/docs/mcp).
 
-From the terminal, `create` covers the brief-driven tools (explainer, listicle, story, UGC, demo, article and spokesperson) and your own scripts, and `publish` posts the result. The [API reference](https://makeaivideo.ai/docs/api) lists exactly what each endpoint accepts.
+From the terminal, `create` covers the brief-driven tools (explainer, listicle, story, UGC, demo, article and spokesperson, a lip-synced presenter) and your own scripts, and `publish` posts the result. Image to video, talking photo and character swap run in the [web app](https://app.makeaivideo.ai) and the REST API ([image to video](https://makeaivideo.ai/docs/api/videos/create-image-to-video), [talking avatar](https://makeaivideo.ai/docs/api/videos/create-talking-avatar), [character swap](https://makeaivideo.ai/docs/api/videos/create-character-swap)), not as CLI commands.
 
 ## FAQ
 
-**What is the MakeAIVideo CLI?** An MIT-licensed command line client for the MakeAIVideo AI video generator. It creates finished short-form videos from a brief or script, downloads the MP4, and posts it to connected social accounts.
+### How do I make AI videos from the command line?
 
-**How do I install it?** `npm i -g @makeaivideo/cli`, or run it without installing via `npx @makeaivideo/cli`. Node 18 or newer.
+Install the CLI, run `makeaivideo login`, then `makeaivideo create explainer --topic "..." --wait --out video.mp4`. It writes the script, makes the video with voiceover, scenes, captions and music, and saves the MP4.
 
-**Can Claude Code or another AI agent use it?** Yes. Every command prints JSON, and the package ships a Claude Code plugin (`SKILL.md`) plus an `.mcp.json` for the hosted MCP server `https://mcp.makeaivideo.ai`.
+### What is the MakeAIVideo CLI?
 
-**Which platforms can it post to?** TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, X, Threads, Pinterest, Bluesky, Telegram and Discord. X takes videos up to 140 seconds.
+An MIT-licensed command line client for the MakeAIVideo AI video generator. It creates finished short-form videos from a brief or script, downloads the MP4, and posts it to connected social accounts.
 
-**How is it priced?** MakeAIVideo is a paid product with monthly plans and a 7-day trial (card required). The CLI uses the same credits as the app; `estimate` quotes a video before you create it. See [pricing](https://makeaivideo.ai/pricing).
+### How do I install it?
 
-**Where do I get help?** Open an [issue](https://github.com/makeaivideo-ai/cli/issues) or email support@makeaivideo.ai.
+`npm i -g @makeaivideo/cli`, or run it without installing via `npx @makeaivideo/cli`. Node 18 or newer.
+
+### Can Claude Code or another AI agent use it?
+
+Yes. Every command prints JSON, and the package ships a Claude Code plugin (`SKILL.md`) plus an `.mcp.json` for the hosted MCP server `https://mcp.makeaivideo.ai`.
+
+### Which platforms can it post to?
+
+TikTok, Instagram, YouTube, Facebook Pages, LinkedIn, X, Threads, Pinterest, Bluesky, Telegram and Discord. X takes videos up to 140 seconds.
+
+### How is it priced?
+
+MakeAIVideo is a paid product with monthly plans and a 7-day trial (card required). The CLI uses the same credits as the app, with no separate charge, and `estimate` quotes a video before you create it. An agent cannot create an account: sign up at [app.makeaivideo.ai/signup](https://app.makeaivideo.ai/signup) first. See [pricing](https://makeaivideo.ai/pricing).
+
+### Where do I get help?
+
+Open an [issue](https://github.com/makeaivideo-ai/cli/issues) or email support@makeaivideo.ai.
 
 ## Links
 
 - Website: [makeaivideo.ai](https://makeaivideo.ai)
 - CLI guide: [makeaivideo.ai/docs/cli](https://makeaivideo.ai/docs/cli) · [makeaivideo.ai/cli](https://makeaivideo.ai/cli)
+- AI agents: [makeaivideo.ai/agents](https://makeaivideo.ai/agents) · [connect your AI app](https://app.makeaivideo.ai/ai-assistants) · [auth.md](https://makeaivideo.ai/auth.md)
+- Pricing: [makeaivideo.ai/pricing](https://makeaivideo.ai/pricing)
 - Developer hub: [makeaivideo.ai/developers](https://makeaivideo.ai/developers)
 - API reference: [makeaivideo.ai/docs/api](https://makeaivideo.ai/docs/api)
 - OpenAPI spec: [app.makeaivideo.ai/api/v1/openapi.json](https://app.makeaivideo.ai/api/v1/openapi.json)
